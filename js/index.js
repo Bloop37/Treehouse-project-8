@@ -6,7 +6,7 @@ const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 fetch(urlAPI)
     .then(res => res.json())
-    .then(res => res.results())
+    .then(res => res.results)
     .then(displayEmployees)
     .catch(err => console.log(err))
     function displayEmployees(employeeData){
@@ -16,7 +16,7 @@ fetch(urlAPI)
         let name = employee.name;
         let email = employee.email;
         let city = employee.location.city;
-        let picture = emplayee.picture;
+        let picture = employee.picture;
         employeeHTML += `
         <div class="card" data-index="${index}">
         <img class="avatar" src="${picture.large}" />
@@ -30,11 +30,11 @@ fetch(urlAPI)
     });
     gridContainer.innerHTML = employeeHTML;
     };
-function displayModel(index) {
+function displayModal(index) {
     let {name, dob, phone, email, location: {city, street, state, postcode}, picture } = employees[index];
     let date = new Date(dob.date);
-    const modelHTML =  `
-    img class="avatar" src="${picture.large}" />
+    const modalHTML =  `
+    <img class="avatar" src="${picture.large}" />
     <div class="text-container">
         <h2 class="name">${name.first} ${name.last}<h2>
         <p class="email">${email}</p>
@@ -42,11 +42,11 @@ function displayModel(index) {
         <hr />
         <p>${phone}</p>
         <p class="address">${street}, ${state} ${postcode}</p>
-        <p>Birthday: ${day.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+        <p>Birthday: ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
         </div>
         `;
         overlay.classList.remove("hidden");
-        modelContainer.innerHTML = modelHTML;
+        modalContainer.innerHTML = modalHTML;
 }
 gridContainer.addEventListener('click', e =>{
     if (e.target !== gridContainer){
@@ -59,10 +59,3 @@ modalClose.addEventListener('click', () => {
     overlay.classlist.add("hidden");
 })
 
-$.ajax({
-    url: 'https://randomuser.me/api/',
-    dataType: 'json',
-    success: function(data) {
-      console.log(data);
-    }
-  });  
