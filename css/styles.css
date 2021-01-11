@@ -29,3 +29,22 @@ background: rgba(100, 100, 100, 0.4);
 .hidden{
     display: none;
 }
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+.card{
+    border: green;
+    display: grid;
+    border-style: solid;
+    padding: 5px;
+    margin: 5px;;
+
+}
+.avatar{
+    grid-column: 1 / span 1;
+    border-radius: 50%;
+}
+.text-container{
+    grid-column: 2 / span 2;
+}
